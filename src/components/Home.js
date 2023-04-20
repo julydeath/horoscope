@@ -42,7 +42,7 @@ const Home = () => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <label for="cars">Choose your sign: </label>
+        <label for={sign}>Choose your sign: </label>
         <select
           ref={sign}
           onChange={(e) => (sign.current.value = e.target.value)}
@@ -65,7 +65,7 @@ const Home = () => {
           ref={sign}
           onChange={(e) => (sign.current.value = e.target.value)}
         /> */}
-        <label for="cars">Choose your partner sign : </label>
+        <label for={partnerSign}>Choose your partner sign : </label>
         <select
           ref={partnerSign}
           onChange={(e) => (partnerSign.current.value = e.target.value)}
