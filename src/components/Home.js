@@ -9,6 +9,7 @@ const Home = () => {
   const partnerSign = useRef();
   const [list, setList] = useState([]);
   const [isPending, startTransition] = useTransition();
+  console.log(process.env.REACT_APP_RAPIDAPI_KEY);
 
   const fetchData = async () => {
     try {
@@ -18,8 +19,7 @@ const Home = () => {
           sign2: `${partnerSign.current.value}`,
         },
         headers: {
-          "X-RapidAPI-Key":
-            "23c2956d4bmsh4842e7b6c1d08a9p109998jsn3a0db0226955",
+          "X-RapidAPI-Key": process.env.REACT_APP_RAPIDAPI_KEY,
           "X-RapidAPI-Host": "horoscope-astrology.p.rapidapi.com",
         },
       });
