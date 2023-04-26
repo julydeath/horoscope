@@ -1,4 +1,4 @@
-import React, { useRef, useState, useTransition } from "react";
+import React, { useRef, useState } from "react";
 import List from "./List";
 import axios from "axios";
 
@@ -8,7 +8,8 @@ const Home = () => {
   const sign = useRef();
   const partnerSign = useRef();
   const [list, setList] = useState([]);
-  const [isPending, startTransition] = useTransition();
+  const [loading, setLoading] = useState(false);
+
   console.log(process.env.REACT_APP_RAPIDAPI_KEY);
 
   const fetchData = async () => {
@@ -24,6 +25,7 @@ const Home = () => {
         },
       });
       setList(data.data);
+      setLoading(false);
     } catch (error) {
       console.log("Error : ", error);
     }
@@ -31,15 +33,11 @@ const Home = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setLoading(true);
     fetchData();
-
-    startTransition(() => {
-      sign.current.value = "";
-      partnerSign.current.value = "";
-    });
   };
 
-  if (isPending) {
+  if (loading) {
     return (
       <div>
         <h1>Loading . . . </h1>
